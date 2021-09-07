@@ -15,11 +15,17 @@ class TaskRepository(
         }.start()
     }
 
-    fun taskById(id: Int): Task = taskDao.findById(id)
+    fun taskById(id: Int): Flow<Task> = taskDao.findById(id)
 
     fun delete(task: Task) {
-        Thread(){
+        Thread() {
             taskDao.delete(task)
+        }.start()
+    }
+
+    fun update(task: Task) {
+        Thread() {
+            taskDao.update(task)
         }.start()
     }
 }

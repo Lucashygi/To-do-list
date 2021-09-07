@@ -3,8 +3,7 @@ package com.bootcamp.todolist.viewmodel
 import androidx.lifecycle.*
 import com.bootcamp.todolist.database.TaskRepository
 import com.bootcamp.todolist.model.Task
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
+
 
 class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
 
@@ -12,11 +11,14 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
 
     fun insert(task: Task) = repository.insert(task)
 
-
-    fun getById(taskId: Int): Task = repository.taskById(taskId)
+    fun getById(taskId: Int): LiveData<Task> = repository.taskById(taskId).asLiveData()
 
     fun delete(task: Task) {
         repository.delete(task)
+    }
+
+    fun update(task:Task) {
+        repository.update(task)
     }
 
 }

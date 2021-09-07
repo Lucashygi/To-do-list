@@ -10,7 +10,7 @@ interface TaskDao {
     fun getAll(): Flow<List<Task>>
 
     @Query("SELECT * FROM task_table WHERE id LIKE :id LIMIT 1")
-    fun findById(id: Int): Task
+    fun findById(id: Int): Flow<Task>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(task:Task)

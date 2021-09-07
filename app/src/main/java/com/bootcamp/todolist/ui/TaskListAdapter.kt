@@ -1,5 +1,6 @@
 package com.bootcamp.todolist.ui
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
@@ -31,9 +32,10 @@ class TaskListAdapter : ListAdapter<Task, TaskListAdapter.TaskViewHolder>(DiffCa
     inner class TaskViewHolder(private val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun bind(item: Task) {
             binding.tvTitle.text = item.title
-            binding.tvDate.text = "${item.date}:${item.hour}"
+            binding.tvDate.text = "${item.date} - ${item.hour}"
             binding.ivMore.setOnClickListener {
                 showPopUp(item)
             }
