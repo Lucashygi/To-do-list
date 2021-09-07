@@ -3,6 +3,7 @@ package com.bootcamp.todolist.datasource
 import com.bootcamp.todolist.model.Task
 
 object TaskDataSource {
+
     private val list = arrayListOf<Task>()
 
     fun getList() = list.toList()
@@ -15,10 +16,9 @@ object TaskDataSource {
             list.add(task)
         }
     }
-
     fun findById(taskId: Int) = list.find { it.id == taskId }
+
     fun deleteTask(task: Task) {
         list.remove(task)
     }
-
 }
